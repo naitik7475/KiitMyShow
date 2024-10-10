@@ -1,6 +1,7 @@
-# React + Vite
+# KiitMyShow Movie Ticket Booking Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This a project for KIIT K-Explore Web Design Elective.
+This Project is being made using the MERN Stack.
 
 Currently, two official plugins are available:
 
