@@ -1,31 +1,37 @@
 // src/components/MovieList.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import xmen from '../assets/movies/xmen.png';
 import blackpanther from '../assets/movies/blackpanther.png';
 import babydriver from '../assets/movies/babydriver.png';
 import jumanji from '../assets/movies/jumanji.png';
 
 const MovieList = () => {
+  const navigate = useNavigate();
   const movies = [
     { 
+      id: 1,
       title: 'X-Men: Apocalypse', 
       times: ['11:20 AM', '03:00 PM', '06:45 PM'], 
       poster: xmen,
       trailer: 'https://youtu.be/PfBVIHgQbYk?si=s-p2fibgZJgbNqRy' 
     },
     { 
+      id: 2,
       title: 'Black Panther', 
       times: ['11:20 AM', '03:00 PM', '06:45 PM'], 
       poster: blackpanther,
       trailer: 'https://youtu.be/xjDjIWPwcPU?si=6e48ctCzFy9CWU4c' 
     },
     { 
+      id: 3,
       title: 'Baby Driver', 
       times: ['11:20 AM', '03:00 PM', '06:45 PM'], 
       poster: babydriver,
       trailer: 'https://youtu.be/zTvJJnoWIPk?si=TnKlGrYGWox1A_ZR' 
     },
     { 
+      id: 4,
       title: 'Jumanji', 
       times: ['11:20 AM', '03:00 PM', '06:45 PM'], 
       poster: jumanji,
@@ -33,6 +39,9 @@ const MovieList = () => {
     },
   ];
 
+  const handleGetTicket = (movieId) => {
+    navigate(`/select-seats/${movieId}`);
+  };
   return (
     <div className="p-6 bg-[#011B34] min-h-screen">
       {/* Tabs for navigation */}
@@ -48,9 +57,9 @@ const MovieList = () => {
 
       {/* Movie Cards Section */}
       <div className="grid grid-cols-4 gap-4">
-        {movies.map((movie, index) => (
+        {movies.map((movie) => (
           <div
-            key={index}
+            key={movie.id}
             className="relative group aspect-[3/4] rounded-lg overflow-hidden"
           >
             {/* Movie Poster Image */}
@@ -66,7 +75,12 @@ const MovieList = () => {
 
             {/* Hover Options */}
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-md mb-2">Get Ticket</button>
+              <button 
+                className="bg-blue-600 text-white px-4 py-2 rounded-md mb-2"
+                onClick={() => handleGetTicket(movie.id)}
+              >
+                Get Ticket
+              </button>
               <div 
                 className="text-white hover:underline cursor-pointer"
                 onClick={() => window.open(movie.trailer, '_blank')}
